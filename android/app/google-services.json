@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "670701529316",
+    "project_id": "ondemandserviceap",
+    "storage_bucket": "ondemandserviceap.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670701529316:android:e7f0eb7a99fce62cc364f1",
+        "android_client_info": {
+          "package_name": "com.OnDemand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670701529316-fqsdhc50tdiaq7j653de8gpm968nbgf7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.OnDemand",
+            "certificate_hash": "684894075a0bbcb391b89c2c4f71abc1f5337c73"
+          }
+        },
+        {
+          "client_id": "670701529316-ovv6d7n1q1vj4eqbi6ibecrvrh9rqfjb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.OnDemand",
+            "certificate_hash": "6dd3d2f2af03953bed2743950a8a173b73f5c29e"
+          }
+        },
+        {
+          "client_id": "670701529316-0fvs7sb0co21enspbkp4b7jhlfpvu4hm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDirFnpDwxELdnmyp47UjbE9_LfmTuKWMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670701529316-0fvs7sb0co21enspbkp4b7jhlfpvu4hm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

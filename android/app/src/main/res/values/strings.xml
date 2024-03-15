@@ -1,0 +1,10 @@
+<resources>
+ <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">(AIzaSyClfzkwSl2ucy9GQ6XQcvRAbV4LFFqwloM)</string>
+    <string name="app_name">OnDemand</string>
+
+<string name="facebook_app_id">2150480915352603</string>
+<string name="fb_login_protocol_scheme">fb1234</string>
+<string name="facebook_client_token">56789</string>
+
+
+</resources>
