@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Modal, Pressable,ActivityIndicator,Alert } from 'react-native';
-import { responsiveHeight as Rh, responsiveScreenWidth as Rw } from 'react-native-responsive-dimensions';
+import { responsiveHeight as Rh, responsiveScreenWidth as Rw,responsiveFontSize as Rf } from 'react-native-responsive-dimensions';
 import { colors } from '../../theme';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { searchBeauticians } from '../../services/searchapi';
@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import SearchBeautician from './Beautation';
 import { searchCategorey } from '../../services/searchapi';
 import BookingButtons from '../../components/bookingButton';
+import ScreenWrapper from '../../components/ScreenWrapper';
 export default function SearchBarResult() {
     const navigation = useNavigation();
     const [modalVisible, setModalVisible] = useState(false);
@@ -53,7 +54,7 @@ try {
   
     
     return (
-        
+        <ScreenWrapper>
         <View>
         <View>
             <View style={styles.container}>
@@ -144,6 +145,7 @@ try {
       </View>
      
             </View>
+            </ScreenWrapper>
     );
 };
 
@@ -167,7 +169,9 @@ const styles = StyleSheet.create({
         flex: 1,
         height: '100%',
         marginLeft: 10,
+        fontSize:Rf(2),
         color: `${colors.font1}`,
+        top:Rh(0)
     },
     centeredView: {
         flex: 1,

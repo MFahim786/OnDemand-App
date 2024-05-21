@@ -5,6 +5,7 @@ import { responsiveHeight as Rh, responsiveScreenWidth as Rw, responsiveScreenFo
 import { CompletedBooking } from '../../services/bookingconfrm';
 import { useNavigation } from '@react-navigation/native';
 export default function Completed() {
+
     const navigation=useNavigation();
     const [bannerData, setBannerData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -48,7 +49,6 @@ export default function Completed() {
                 <FlatList
                     data={bannerData?.bookings}
                     horizontal={false}
-                    pagingEnabled
                     keyExtractor={item => item._id}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => (

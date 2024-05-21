@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { Button,View } from 'react-native';
+import { Button,View,ActivityIndicator } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import { facebookLogin } from '../../services/apiauth';
 import { useNavigation } from '@react-navigation/native';
+import { colors } from '../../theme';
 export default function FacebookSignIn() {
-  const navigation = useNavigation();
+  const navigation = useNavigation(); 
   useEffect(()=>{
     onFacebookButtonPress();
   },[])
@@ -48,10 +49,8 @@ export default function FacebookSignIn() {
 
   return (
     <View style={{flex:1,alignContent:"center",alignItems:'center',justifyContent:'center'}}>
-    <Button
-      title="Facebook Sign-In"
-      onPress={() => onFacebookButtonPress()}
-    />
+    <ActivityIndicator size="large" color={colors.headerbackground} />
+    
     </View>
   );
 }

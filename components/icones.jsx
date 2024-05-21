@@ -8,7 +8,7 @@ import {
   } from 'react-native-responsive-dimensions';
 export default function Icones({name,icon_margine, icon_top}) {
   return (
-    <View style={{ marginLeft: Rw(icon_margine), marginTop: Rh(icon_top)}}>
+    <View style={{ marginLeft: Rw(icon_margine), marginTop: Rh(icon_top),right:Rw(5)}}>
      <Icon1 name="greater-than" size={20} color="black" />
     </View>
   )

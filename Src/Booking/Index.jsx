@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, ActivityIndicator, Alert, StyleSheet, ScrollView, Text,TouchableOpacity } from 'react-native';
+import { View, ActivityIndicator, StyleSheet,  Text,TouchableOpacity } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import { useProductContext } from '../../contexprovider/ProduxtContext';
@@ -100,6 +100,7 @@ const ServiceListShow = () => {
         <View style={styles.content}>
           <SelectBox
             label="Select Service"
+            labelStyle={{ color: colors.font1, fontSize: Rf(2),fontWeight:'600' }} 
             options={options}
             value={selectedServiceProvider}
             onChange={onChange()}
@@ -110,8 +111,9 @@ const ServiceListShow = () => {
           />
           <View style={{ height: 40 }} />
           <SelectBox
-            label="Select Sub Service"
+            label="Select Sub Category"
             options={selectedServiceProvider.subServices || []}
+            labelStyle={{ color: colors.font1, fontSize: Rf(1.6),fontWeight:'500' }} 
             selectedValues={selectedSubServices}
             onMultiSelect={onMultiChange()}
             onTapClose={onMultiChange()}
@@ -119,7 +121,6 @@ const ServiceListShow = () => {
             toggleIconColor={colors.ServiceProvider_buttonBackground}
             arrowIconColor={colors.ServiceProvider_buttonBackground}
             width={Rw(85)}
-            labelStyle={{ color: 'black' }} 
           />
          
         </View>
@@ -153,8 +154,8 @@ const styles = StyleSheet.create({
     marginBottom: Rh(2),
   },
   headerText: {
-    fontSize: Rf(3.5),
-    fontWeight: 'bold',
+    fontSize: Rf(5),
+    fontWeight: '800',
     color: colors.font1,
   },
   content: {

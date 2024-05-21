@@ -24,14 +24,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: Rw(100),
     alignItems: 'center',
-    paddingHorizontal: 0, // Adjust padding as needed
-    paddingBottom:0, // Adjust padding as needed
+    paddingHorizontal: 0, 
+    paddingBottom:0, 
     
   },
   button: {
-    borderRadius: Rw(5), // Adjust the border radius for rounded corners
-    paddingVertical: Rh(1.8), // Adjust the vertical padding for height
-    paddingHorizontal:Rw(30) , // Adjust the horizontal padding for width
+    borderRadius: Rw(5), 
+    paddingVertical: Rh(1.8), 
+    paddingHorizontal:Rw(30) , 
     
   },
   buttonText: {

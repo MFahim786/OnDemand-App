@@ -39,13 +39,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.headerbackground,
   },
   searchBar: {
-    flexDirection: 'row', // To align input and search icon horizontally
-    alignItems: 'center', // Align items vertically in the center
-    width: Rw(70), // Adjust width as needed
-    height: Rh(6), // Adjust height as needed
+    flexDirection: 'row',
+    alignItems: 'center', 
+    width: Rw(70), 
+    height: Rh(6), 
     backgroundColor: 'white',
     borderRadius: 20,
     paddingHorizontal: 10,
+    borderColor:'#663C26',
+    borderWidth: 2,
   },
   input: {
     flex: 1, // To make the input take up remaining space

@@ -10,6 +10,7 @@ const AddReview = () => {
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false); // State variable for loading indicator
   const { id } = route.params;
+  console.log("++++",id);
   // Function to render stars for rating selection
   const renderStars = () => {
     const stars = [];
@@ -107,13 +108,15 @@ const styles = StyleSheet.create({
   descriptionLabel: {
     fontSize: 18,
     marginBottom: 10,
+    color:colors.font1,
   },
   descriptionInput: {
     borderWidth: 1,
-    borderColor: '#cccccc',
+    color:colors.font1,
     padding: 10,
     fontSize: 16,
     minHeight: 100,
+    color:colors.font1
   },
   submitButton: {
     backgroundColor: colors.ServiceProvider_buttonBackground,

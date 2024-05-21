@@ -40,26 +40,26 @@ export default function Booking() {
       <View style={styles.buttonContainer}>
         
         <BookingDetails
-         backgroundColor={colors.ServiceProvider_buttonBackground}
+          backgroundColor={selectedTab === 'All' ? colors.bookingsbuttonBackground : 'white'}
           title={"All"}
           pressnext={() => handleTabPress('All')}
-          
+          shadowOpacity={0.5}
         />
         <BookingDetails
-         backgroundColor={colors.ServiceProvider_buttonBackground}
+         backgroundColor={selectedTab === 'Upcomming' ? colors.bookingsbuttonBackground : 'white'}
          title={"Upcomming"}
          pressnext={() => handleTabPress('Upcomming')}
          
        />
        <BookingDetails
-         backgroundColor={colors.ServiceProvider_buttonBackground}
+       backgroundColor={selectedTab === 'Completed' ? colors.bookingsbuttonBackground : 'white'}
          title={"Completed"}
          pressnext={() => handleTabPress('Completed')}
          
        />
         <BookingDetails
-         backgroundColor={colors.ServiceProvider_buttonBackground}
-         title={"Pending"}
+         backgroundColor={selectedTab === 'Pending' ? colors.bookingsbuttonBackground : 'white'}
+         title={"Cancelled"}
          pressnext={() => handleTabPress('Inprogress')}
          
        />
@@ -97,12 +97,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    
-    marginTop: Rh(1.3),
+    borderRadius:15,
+    marginTop: Rh(0),
     paddingHorizontal: 20,
-    backgroundColor: colors.topbackground,
-    height: Rw(15),
+    backgroundColor: colors.bookingsbuttonBackground,
+    height: Rw(20),
     width: '100%',
+    bottom:Rh(1)
   },
   loginText: {
     fontSize: fo(3),

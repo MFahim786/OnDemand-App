@@ -13,9 +13,9 @@ import { baseUrl } from '../../services/supabase';
 export default function FavSaloons() {
     const route = useRoute();
     const navigation = useNavigation();
-    const[loading,setIsLoading]=useState(false);
+    const [loading, setIsLoading] = useState(false);
     const [bannerData, setBannerData] = useState('');
-    console.log("+++++++",bannerData)
+    console.log("+++++++", bannerData)
 
     const scrollX = useRef(new Animated.Value(0)).current;
 
@@ -25,12 +25,12 @@ export default function FavSaloons() {
             try {
                 const data = await favSaloonsList();
                 console.log('Fetched data:', data);
-                setBannerData(data);
+                setBannerData(data?.data);
                 setIsLoading(false);
             } catch (error) {
                 console.error('Error fetching data:', error);
                 setIsLoading(false);
-            }finally{
+            } finally {
                 setIsLoading(false);
             }
         }
@@ -48,7 +48,7 @@ export default function FavSaloons() {
     }, []);
 
     // Render loading state if bannerData is still null or empty
-    if (loading===true) {
+    if (loading === true) {
         return (
             <ScreenWrapper>
                 <View style={styles.loadingContainer}>
@@ -57,15 +57,15 @@ export default function FavSaloons() {
             </ScreenWrapper>
         );
     }
-    if (bannerData.data.length === 0) {
-        return (
-            <ScreenWrapper>
-                <View style={styles.loadingContainer}>
-                    <Text style={{ fontSize: fo(2.5), color: 'black',fontFamily:colors.fontfaimly_heding }}>No Saloons Found</Text>
-                </View>
-            </ScreenWrapper>
-        );
-    }
+    // if (bannerData?.length === 0) {
+    //     return (
+    //         <ScreenWrapper>
+    //             <View style={styles.loadingContainer}>
+    //                 <Text style={{ fontSize: fo(2.5), color: 'black',fontFamily:colors.fontfaimly_heding }}>No Saloons Found</Text>
+    //             </View>
+    //         </ScreenWrapper>
+    //     );
+    // }
     return (
         <ScreenWrapper>
             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', backgroundColor: colors.topbackground, height: Rh(8), width: '100%', marginTop: Platform.OS == 'android' ? 0 : Rh(1.3) }}>
@@ -79,20 +79,20 @@ export default function FavSaloons() {
             <View style={styles.container}>
                 {/* Popular Saloons  */}
                 <View >
-                    {bannerData.data.length === 0 ? (
+                    {bannerData?.length === 0 ? (
                         <View style={styles.noDataContainer}>
                             <Text style={styles.noDataText}>No saloons found.</Text>
                         </View>
                     ) : (
                         <FlatList
-                            data={bannerData.data}
+                            data={bannerData}
                             horizontal={false}
                             pagingEnabled
                             keyExtractor={(item) => item?._id?.toString()}
                             showsHorizontalScrollIndicator={false}
                             renderItem={({ item }) => (
-                                <TouchableOpacity key={item?._id}
-                                    onPress={() => navigation.navigate('ServiceProvider')}
+                                <TouchableOpacity 
+                                    onPress={() => navigation.navigate('ServiceProvider',{beauticianId:item?._id})}
                                 >
                                     <View style={styles.bannerContainer} >
                                         {item.profilePhoto ? (
@@ -210,12 +210,13 @@ const styles = StyleSheet.create({
         marginRight: Rw(2)
     },
     noDataContainer: {
-        flex: 1,
+       
         justifyContent: 'center',
         alignItems: 'center',
     },
     noDataText: {
         fontSize: fo(2),
-        color: colors.font1,
+         color: colors.font1,
+        fontFamily: colors.fontfaimly_heding,
     },
 });

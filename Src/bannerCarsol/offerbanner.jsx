@@ -3,7 +3,7 @@ import { View, StyleSheet, ImageBackground, FlatList, Animated, Text } from 'rea
 import { responsiveHeight as Rh, responsiveScreenWidth as Rw } from 'react-native-responsive-dimensions';
 import { catitems } from '../../assets/Categories/catgorey';
 import { colors } from '../../theme';
-
+import * as Animatable from 'react-native-animatable';
 export default function BannerCarousel() {
   const scrollX = useRef(new Animated.Value(0)).current;
 
@@ -19,14 +19,14 @@ export default function BannerCarousel() {
 
   const renderItem = ({ item }) => {
     return (
-      <View style={styles.bannerContainer}>
+      <Animatable.View animation={'slideInDown'}  style={styles.bannerContainer}>
         <ImageBackground
           style={styles.bannerImage}
           source={require("../../assets/Banner/1.png")}
         >
          {/* //explore button is paste here */}
         </ImageBackground>
-      </View>
+      </Animatable.View>
     );
   };
 
@@ -35,7 +35,6 @@ export default function BannerCarousel() {
       <FlatList
         data={catitems}
         horizontal={true}
-        pagingEnabled
         keyExtractor={(item) => item.id}
         showsHorizontalScrollIndicator={false}
         renderItem={renderItem}

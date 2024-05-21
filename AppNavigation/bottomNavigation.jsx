@@ -44,7 +44,7 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
         };
 
         return (
-          <TouchableOpacity key={index} style={{ flex: 1, alignItems: 'center', padding: 10 }} onPress={onPress}>
+          <TouchableOpacity key={index} style={{ flex: 1, alignItems: 'center', padding: 10,backgroundColor:colors.topbackground }} onPress={onPress}>
             <Ionicons
               name={label === 'Home' ? 'home-sharp' : label === 'Location' ? 'location-sharp' : label === 'Booking' ? 'calendar-clear-sharp' : 'person-sharp'}
               size={25}

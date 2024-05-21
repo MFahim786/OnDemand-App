@@ -30,7 +30,6 @@ export default function CategoreySaloon() {
     console.log("this is Categorey id side", categoryId);
     const [bannerData, setBannerData] = useState('');
     const [loading, setLoading] = useState(true);
-    console.log(bannerData)
     const scrollX = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
@@ -65,7 +64,7 @@ export default function CategoreySaloon() {
         );
     }
     // Render loading state if bannerData is still null or empty
-    if (!bannerData || !bannerData.data || bannerData.data.length === 0) {
+    if (!bannerData || !bannerData?.data || bannerData?.data?.length === 0) {
         return (
             <View style={styles.loadingContainer}>
                  <Text style={styles.noSaloonsText}>No saloons found.</Text>

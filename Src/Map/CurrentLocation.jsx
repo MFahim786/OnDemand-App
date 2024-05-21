@@ -16,10 +16,11 @@ import ScreenWrapper from '../../components/ScreenWrapper';
 import { colors } from '../../theme';
 import BookingButtons from '../../components/bookingButton';
 import { useNavigation } from '@react-navigation/native';
+import Icones from'react-native-vector-icons/Ionicons'
 const CurrentLocation = () => {
   const navigation = useNavigation();
-  const [currentLongitude, setCurrentLongitude] = useState('...');
-  const [currentLatitude, setCurrentLatitude] = useState('...');
+  const [currentLongitude, setCurrentLongitude] = useState(74.35987129142191);
+  const [currentLatitude, setCurrentLatitude] = useState(31.517831098004624);
   const [locationStatus, setLocationStatus] = useState('');
   const [region, setRegion] = useState(null);
   const [formattedAddress, setFormattedAddress] = useState('');
@@ -77,7 +78,7 @@ const CurrentLocation = () => {
 
   const reverseGeocode = async (latitude, longitude) => {
     try {
-      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyClfzkwSl2ucy9GQ6XQcvRAbV4LFFqwloM`);
+      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyCoYbLnkLSUXrnfNO9T3iqEd9YOOwPqzrA`);
       const data = await response.json();
       if (data.status === 'OK') {
         const formattedAddress = data.results[0].formatted_address;
@@ -110,20 +111,40 @@ const handlenavigation=()=>{
 }
   return (
     <ScreenWrapper>
-      <View style={styles.container}>
+      <View style={{alignItems:'center' ,backgroundColor:colors.topbackground,height:Rh(10),width:'100%',marginTop:Platform.OS==='ios'? Rh(0.2): Rh(0)}}>
+     
+     <Text style={styles.loginText}>Locationes</Text> 
+     <View style={{flexDirection:'row',justifyContent:'space-between',backgroundColor:'white',borderRadius:Rw(10),height:Rh(5),width:Rw(80),paddingHorizontal:Rw(4)}}>
+      {formattedAddress?( <Text style={{textAlign:'center',color:colors.font1,fontSize:Rf(1.5),marginTop:Rh(1.4)}}>{formattedAddress}</Text>):( <Text style={{textAlign:'center',color:colors.font1,fontSize:Rf(1.5),marginTop:Rh(1.4)}}>Set delivery address</Text>)}
     
-        <MapView style={styles.map} showsUserLocation={true} />
-        <View style={styles.absolutebox1}>
-          <Text style={{textAlign:'center',color:colors.font1,fontSize:Rf(2),marginTop:Rh(1)}}>{formattedAddress}</Text>
-          
-        </View>
+     <View style={{marginTop:Rh(1),marginLeft:Rw(0)}}>
+     <Icones size={25} name={'location-outline'} color={'black'}/>
+     </View>
+     </View>
+     </View>
+      <View style={styles.container}>
+     
+      <MapView 
+  style={styles.map} 
+  showsUserLocation={true} 
+  initialRegion={{ 
+    latitude: currentLatitude, 
+    longitude: currentLongitude,
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01,
+  }}
+>
+<Marker coordinate={{latitude:currentLatitude,longitude:currentLongitude}}/>
+</MapView>
+
+       
         <View style={styles.absolutebox}>
         {loading ? (
   <ActivityIndicator size="large" color={colors.headerbackground} />
 ) : (
   <BookingButtons 
     backgroundColor={colors.ServiceProvider_buttonBackground} 
-    titlenext={'Confirm'} 
+    titlenext={'Continue'} 
     pressnext={handlenavigation} 
   />
 )}
@@ -141,6 +162,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
+
   },
   map: {
     flex: 1,
@@ -161,6 +183,13 @@ const styles = StyleSheet.create({
     height: Rh(6.4),
     width: Rw(70),
     borderRadius:5,
+  },
+  loginText: {
+    fontSize: Rf(3),
+    marginTop: Rh(0),
+    fontWeight: 'bold',   
+    textAlign: 'center',
+    color: 'white',
   },
 });
 

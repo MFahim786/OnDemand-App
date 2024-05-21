@@ -9,7 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ScreenWrapper({ children ,bgcolor}) {
   const StatusbarHeight = Platform.select({
-    ios: StatusBar.currentHeight || Rh(5),
+    ios: StatusBar.currentHeight || Rh(5.6),
     android: 0,
   });
 

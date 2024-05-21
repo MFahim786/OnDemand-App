@@ -190,3 +190,29 @@ export async function facebookLogin({ userInfo }) {
     throw error;
   }
 }
+export async function numberLogin({ formData,uid }) {
+  console.log("loginSuccess function called");
+  number=formData.PhoneNo;
+  console.log(formData.Password,uid);
+ 
+  try {
+    const response = await fetch(`${baseUrl}/api/userAuth/PhoneAuth`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        uid:uid,
+        phoneNumber: formData.PhoneNo, 
+        password: formData.Password
+      }), 
+    });
+    const data = await response.json();
+    console.log(data);
+    await AsyncStorage.setItem('AuthToken', data.token);
+    return data;
+  } catch (error) {
+    console.error('Error logging in:', error);
+    throw error;
+  }
+}

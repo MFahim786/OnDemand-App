@@ -8,7 +8,7 @@ const ServiceProviderReviews = () => {
   const [reviewData, setReviewData] = useState(null);
   const route = useRoute();
   const { beauticianId } = route.params;
-
+console.log(``,reviewData);
   useEffect(() => {
     async function fetchData() {
       try {

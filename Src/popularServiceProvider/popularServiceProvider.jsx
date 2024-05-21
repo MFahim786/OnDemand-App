@@ -19,10 +19,10 @@ import { PopularItems } from '../../assets/popularServiceProvider/PopularService
 import { useNavigation  } from '@react-navigation/native';
 import {topBeautaion} from '../../services/beautacions'
 import { baseUrl } from '../../services/supabase';
+import * as Animatable from 'react-native-animatable';
 export default function PopularServiceProvider() {
   const navigation = useNavigation();
   const [bannerData, setBannerData] = useState([ ]);
-    console.log(bannerData)
   const scrollX = useRef(new Animated.Value(0)).current;
  
 
@@ -63,13 +63,12 @@ navigation.navigate('ServiceProvider', { beauticianId: reviewid });
         <FlatList
           data={bannerData?.data}
           horizontal={true}
-          pagingEnabled
           keyExtractor={(item) => item?.beauticianId?.toString()}
           showsHorizontalScrollIndicator={false}
           
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => handlePress(item.beauticianId)}>
-            <View style={styles.bannerContainer}>
+            <TouchableOpacity   onPress={() => handlePress(item.beauticianId)}>
+            <Animatable.View animation={'slideInUp'} style={styles.bannerContainer}>
               {item.profilePhoto ? (
                 <Image
                   style={styles.bannerImage}
@@ -97,7 +96,7 @@ navigation.navigate('ServiceProvider', { beauticianId: reviewid });
                   <Text style={{ color: colors.fontSubheadin, fontSize:fo(1.3) }}>({item.averageRating})</Text>
                 </View>
               </View>
-            </View>
+              </Animatable.View>
           </TouchableOpacity>
           )}
          
@@ -118,13 +117,15 @@ const styles = StyleSheet.create({
     height: Rh(100),
   },
   buttontext: {
-    fontSize: fo(1.4),
+    fontSize: fo(1.9),
+    fontWeight: '700',
     color: `${colors.font1}`,
     marginBottom:Rh(1.3)
   },
   bannerContainer: {
     width: Rw(79),
     height: Rw(20),
+    backgroundColor:'#fff',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -133,7 +134,8 @@ const styles = StyleSheet.create({
     borderRadius: Rw(3),
     borderWidth: 1,
     borderColor: 'rgba(128, 128, 128, 0.2)',
-
+    shadowColor:'rgba(0, 0, 0, .5)',
+    shadowOpacity:10,
   },
   bannerImage: {
     width: Rw(30),

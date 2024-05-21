@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, TextInput, View, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Platform } from 'react-native';
 import { colors } from '../theme';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {
@@ -7,59 +7,52 @@ import {
   responsiveScreenWidth as Rw,
   responsiveScreenFontSize as fo,
 } from 'react-native-responsive-dimensions';
-const Input = ({ placeholder, is_password=false, onChangeText, right=10 }) => {
+const Input = ({  placeholder, is_password=false, onChangeText,right,width=80 ,keyboardtype}) => {
   const [showPassword, setShowPassword] = useState(false);
-  console.log('chla');
-  
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-    console.log('chla');
   };
 
- 
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder={placeholder}
-        placeholderTextColor={colors.font1}
-        secureTextEntry={is_password && !showPassword}
-        onChangeText={onChangeText}
-        // disableFullscreenUI={true}
-      />
-      {/* {is_password && (
-        <TouchableOpacity
-          style={[styles.eye, { right: right }]}
-          onPress={togglePasswordVisibility}
-        >
-          <Icon name={showPassword ? 'eye-off' : 'eye'} size={25} color={'black'} />
-        </TouchableOpacity>
-      )} */}
-    </View>
-  );
-};
- 
-const styles = StyleSheet.create({
-  container: {
-    position: 'relative',
-  },
-  input: {
-    fontSize: fo(1.8),
-    marginLeft: Rh(5),
+    <View style={styles.container} >
+      <View style={{width: Rw(width),  marginLeft: Rh(5),
+    borderWidth: Rw(0.2),marginLeft: Rh(5),
     borderWidth: Rw(0.2),
     borderColor: 'black',
     borderRadius: 10,
-    width: Rw(80),
-    padding: Rh(1.7),
-    color: 'black',
-    fontWeight: 'bold',
-    fontFamily:colors.fontfaimly_text
+    height:Rh(6),
+    // opacity: 0.3,
+
+    }}>
+      <TextInput
+         style={styles.logininput}
+        placeholder={placeholder}
+        placeholderTextColor={colors.font1}
+        secureTextEntry={!showPassword && is_password}
+        onChangeText={onChangeText}
+        disableFullscreenUI={false}
+        keyboardType={keyboardtype}
+      />
+      </View>
+      {is_password && (
+        <TouchableOpacity style={{ top: Rh(1.6), position: 'absolute',right:right,}} onPress={togglePasswordVisibility}>
+          <Icon name={showPassword ? 'eye-off' : 'eye'} size={25} color={'black'} />
+        </TouchableOpacity>
+      )}
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+ 
+  logininput: {
+    marginTop:Platform.OS=='ios'? Rh(1.4):0,
+    fontSize: fo(2), 
+    color: colors.font1,
+
   },
-  eye: {
-    position: 'absolute',
-    top: '32%',
-    transform: [{ translateY:0 }], 
-  },
+ 
 });
 
 export default Input;

@@ -5,12 +5,11 @@ import { responsiveHeight as Rh, responsiveScreenWidth as Rw, responsiveScreenFo
 import { allCategories } from '../../services/gatgories';
 import { useNavigation } from '@react-navigation/native';
 import { baseUrl } from '../../services/supabase';
-
+import * as Animatable from 'react-native-animatable';
 export default function Catgorey() {
   const navigation = useNavigation();
   const [categoreyData, setCategorey] = useState([]);
   const scrollX = useRef(new Animated.Value(0)).current;
-console.log("================================================",categoreyData)
   useEffect(() => {
     async function fetchData() {
       try {
@@ -39,14 +38,14 @@ console.log("================================================",categoreyData)
           
         </View>
       </View>
-      <View style={styles.FlatList_container}>
+      <View style={styles.FlatList_container}> 
         <FlatList
           data={categoreyData}
           horizontal={true}
-          pagingEnabled
           keyExtractor={(item) => item._id.toString()}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => (
+            <Animatable.View animation={'slideInRight'}>
             <TouchableOpacity style={styles.bannerContainer} onPress={() => handleCategoryPress(item._id)}>
               {item.Logo ? (
                 <Image style={styles.bannerImage} source={{ uri:  `${baseUrl}/${item.Logo.replace(/\\/g, '/')}` }} />
@@ -55,6 +54,7 @@ console.log("================================================",categoreyData)
               )}
               <Text style={styles.catgoreisText}>{item.Name}</Text>
             </TouchableOpacity>
+            </Animatable.View>
           )}
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: false })}
         />
@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
     height: Rh(11),
   },
   buttontext: {
-    fontSize: fo(1.4),
+    fontSize: fo(1.9),
+    fontWeight: '700',
     color: colors.font1,
     marginBottom:Rh(1.3)
   },
@@ -91,11 +92,12 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   catgoreisText: {
-    color: colors.font1,
-    fontSize: fo(1.2),
+    color: colors.catgoreytext,
+    fontSize: fo(1.3),
     fontFamily: colors.fontfaimly_heding,
     marginTop:Rh(1),
     textAlign: 'center',
-    marginRight:Rw(4)
+    marginRight:Rw(4),
+    fontWeight: '700'
   },
 });

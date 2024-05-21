@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, Platform } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Platform, Alert } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import moment from 'moment';
 import { useNavigation } from '@react-navigation/native';
@@ -16,10 +16,11 @@ export default function Schedule() {
   const [selectedDate, setSelectedDate] = useState(moment().format('YYYY-MM-DD'));
   const [selectedYear, setSelectedYear] = useState(moment().year());
   const [selectedMonth, setSelectedMonth] = useState(moment().month() + 1);
+  const [time, setTime]= useState(null);
   const navigation = useNavigation();
   const route = useRoute();
-  const { saloonId } = route.params;
-
+  const { saloonId } = route?.params;
+console.log(time)
   const onDayPress = (day) => {
     setSelectedDate(day.dateString);
   };
@@ -31,26 +32,39 @@ export default function Schedule() {
 
   // Function to handle button press and navigate
   const handleButtonPress = (selectedTime) => {
-    // Navigate to the next screen and pass selected date and time as params
+    setTime(selectedTime.format())
     navigation.navigate('RecptBooking', {
       saloonId: saloonId,
       selectedDate: selectedDate,
       selectedTime: selectedTime.format(),
     });
   };
-
+handleNavigation = () => {
+  if(time==null){
+    Alert.alert('Please select Time For Booking');
+    return;
+  }
+  navigation.navigate('RecptBooking', {
+  saloonId: saloonId,
+  selectedDate: selectedDate,
+  selectedTime: time,
+});}
   // Generate buttons for each hour of the day
   const generateTimeButtons = () => {
     const buttons = [];
     for (let i = 0; i < 24; i++) {
+      const time = moment().startOf('day').add(i, 'hours');
       buttons.push(
         <TouchableOpacity
           key={i}
-          style={styles.timeButtonContainer}
-          onPress={() => handleButtonPress(moment().startOf('day').add(i, 'hours'))}
+          style={[
+            styles.timeButtonContainer,
+            time.format('YYYY-MM-DD HH:mm') === selectedDate ? styles.selectedTimeButton : null,
+          ]}
+          onPress={() => handleButtonPress(time)}
         >
           <Text style={styles.timeButtonText}>
-            {moment().startOf('day').add(i, 'hours').format('h A')}
+            {time.format('h:mm A')}
           </Text>
         </TouchableOpacity>
       );
@@ -82,7 +96,7 @@ export default function Schedule() {
 
       {/* Booking button */}
       <View style={styles.bookingButtonContainer}>
-        <BookingButtons backgroundColor={colors.ServiceProvider_buttonBackground} titlenext={'Book Now'} />
+        <BookingButtons backgroundColor={colors.ServiceProvider_buttonBackground} titlenext={'Book Now'} pressnext={handleNavigation}/>
       </View>
     </View>
   );
@@ -97,16 +111,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    marginTop: Rh(19),
+    marginTop: Rh(15),
     paddingHorizontal: Rw(10),
   },
   timeButtonContainer: {
-    width: '30%', // Adjust the width as needed
-    marginVertical: Rh(1),
+    width: Rw(26), // Adjust the width as needed
+    marginVertical: Rh(0.4),
+    marginHorizontal: '0%',
     backgroundColor: colors.ServiceProvider_buttonBackground,
     borderRadius: 3,
     alignItems: 'center',
     justifyContent: 'center',
+    height:Rh(4.5)
   },
   timeButtonText: {
     color: 'white',
@@ -115,5 +131,8 @@ const styles = StyleSheet.create({
   bookingButtonContainer: {
     alignItems: 'center',
     marginTop: Rh(7),
+  },
+  selectedTimeButton: {
+    backgroundColor: 'blue', // Change the background color to your desired color
   },
 });

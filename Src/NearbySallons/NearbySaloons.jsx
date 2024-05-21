@@ -18,6 +18,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import {allBeautaion} from '../../services/beautacions'
 import { baseUrl } from '../../services/supabase';
+import * as Animatable from 'react-native-animatable';
  const NearbySaloons=()=> {
   
   const navigation = useNavigation();
@@ -62,7 +63,7 @@ navigation.navigate('ServiceProvider', { beauticianId: reviewid });
   return (
     <View clasName="" style={styles.container}>
       <View className="flex-row justify-between items-center">
-        <Text style={styles.buttontext}>Nearby Saloones</Text>
+        <Text style={styles.buttontext}>Nearby Beautician</Text>
        
        
       </View>
@@ -71,12 +72,11 @@ navigation.navigate('ServiceProvider', { beauticianId: reviewid });
         <FlatList
           data={bannerData?.data}
           horizontal={true}
-          pagingEnabled
           keyExtractor={(item) => item?._id?.toString()}
           showsHorizontalScrollIndicator={false}
           renderItem={({item}) => (
             <TouchableOpacity onPress={() => handlePress(item?._id)}>
-            <View style={styles.bannerContainer} >
+             <Animatable.View animation={'slideInRight'} duration={1} style={styles.bannerContainer}>
             {item.profilePhoto ? (
                 <Image
                   style={styles.bannerImage}
@@ -111,7 +111,7 @@ navigation.navigate('ServiceProvider', { beauticianId: reviewid });
 
                 </View>
                 </View>
-              </View>
+              </Animatable.View>
             </TouchableOpacity>
           )}
           onScroll={Animated.event(
@@ -137,7 +137,8 @@ const styles = StyleSheet.create({
 
   },
   buttontext: {
-    fontSize: fo(1.4),
+    fontSize: fo(1.9),
+    fontWeight: '700',
     color: `${colors.font1}`,
     marginBottom:Rh(1.3)
   },
@@ -146,11 +147,13 @@ const styles = StyleSheet.create({
     height: Rw(45), // Responsive height
     alignItems: 'between',
     marginRight: Rw(5),
-    
+    backgroundColor:'#fff',
     borderRadius: Rw(3), // Add a rounded border with a responsive radius
     borderWidth: 1, // Add a border width
     borderColor: 'rgba(128, 128, 128, 0.2)',
-    
+    borderColor: 'rgba(128, 128, 128, 0.2)',
+    shadowColor:'rgba(0, 0, 0, .5)',
+    shadowOpacity:10,
   },
   bannerImage: {
     width: Rw(50),

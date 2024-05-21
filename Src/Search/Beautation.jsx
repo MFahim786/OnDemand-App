@@ -46,10 +46,10 @@ import {
                             onPress={() => navigation.navigate('ServiceProvider')}
                         >
                             <View style={styles.bannerContainer} >
-                                {item.profilePhoto ? (
+                                {item?.profilePhoto ? ( 
                                     <Image
                                         style={styles.bannerImage}
-                                        source={{ uri: `${baseUrl}/${item.profilePhoto.replace(/\\/g, '/')}` }}
+                                        source={{ uri: `${baseUrl}/${item?.profilePhoto?.replace(/\\/g, '/')}` }}
                                     />
                                 ) : (
                                     <Image
@@ -62,12 +62,12 @@ import {
                                 <View
                                     style={styles.SaloonItem}>
 
-                                    <Text style={styles.saloonName}>{item.firstName} {item.lastName}</Text>
+                                    <Text style={styles.saloonName}>{item?.firstName} {item?.lastName}</Text>
 
 
                                     <View style={styles.PhoneContainer} className="flex-row justify-between">
                                         <Image source={require('../../assets/Icons/Callmale.png')} />
-                                        <Text style={styles.Phone}>{item.Phone ? item.Phone : 920000000}</Text>
+                                        <Text style={styles.Phone}>{item?.Phone ? item.Phone : 920000000}</Text>
                                     </View>
                                     <View style={styles.ratingContainer} className="flex-row justify-between">
                                         <Ionicons
@@ -76,8 +76,8 @@ import {
                                             color='#F4C01E'
                                         />
 
-                                        <Text style={{ color: colors.font1 }} className="ml-1">{item.totalReviews}</Text>
-                                        <Text style={{ color: colors.fontSubheadin }}>({item.averageRating})</Text>
+                                        <Text style={{ color: colors.font1 }} className="ml-1">{item?.totalReviews}</Text>
+                                        <Text style={{ color: colors.fontSubheadin }}>({item?.averageRating})</Text>
 
                                     </View>
                                 </View>

@@ -4,6 +4,7 @@ import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-goo
 import auth from '@react-native-firebase/auth';
 import { googleLogin } from '../../services/apiauth';
 import { useNavigation } from '@react-navigation/native';
+import { colors } from '../../theme';
 
 GoogleSignin.configure({
   webClientId: '670701529316-0fvs7sb0co21enspbkp4b7jhlfpvu4hm.apps.googleusercontent.com',
@@ -49,21 +50,8 @@ const GmailAccountList = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {loading ? (
-        <ActivityIndicator size="large" color="#0000ff" />
-      ) : userInfo ? (
-        <>
-          <Text>Welcome, {userInfo.displayName}!</Text>
-          <Button title="Sign Out" onPress={() => GoogleSignin.signOut()} />
-        </>
-      ) : (
-        <GoogleSigninButton
-          style={{ width: 192, height: 48 }}
-          size={GoogleSigninButton.Size.Wide}
-          color={GoogleSigninButton.Color.Dark}
-        />
-      )}
+    <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
+     <ActivityIndicator size="large" color={colors.headerbackground} />
     </View>
   );
 };

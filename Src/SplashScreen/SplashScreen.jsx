@@ -30,7 +30,6 @@ export default function SplashScreen() {
           renderItem={({ item }) => <OnbordingItem item={item} />} 
           horizontal
           showsHorizontalScrollIndicator={false}
-          pagingEnabled={true}
           bounces={false}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { x: scrollx } } }],

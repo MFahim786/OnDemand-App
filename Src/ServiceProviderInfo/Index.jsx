@@ -23,6 +23,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import PhotosGallrey from './Gallrey';
 const ServiceProvider = ({ navigation }) => {
   const route = useRoute();
+  const [selectedTab, setSelectedTab] = useState('About');
   const beauticianId = route?.params ? route.params.beauticianId : '658c2efdc040b459a3082002';
   console.log(beauticianId);
   useEffect(() => {
@@ -43,16 +44,9 @@ const ServiceProvider = ({ navigation }) => {
     (serviceProvider) => serviceProvider.id === selectedId
   );
 
-  const [showAbout, setShowAbout] = useState('About');
-  const [showServices, setShowServices] = useState(false);
-  const [showGallery, setShowGallery] = useState(false);
-  const [showReview, setShowReview] = useState(false);
-
   const toggleContent = (content) => {
-    setShowAbout(content === 'About');
-    setShowServices(content === 'Services');
-    setShowReview(content === 'Review');
-    setShowGallery(content === 'Gallery');
+    console.log(content);
+    setSelectedTab(content);
   };
 
   if (!selectedSalon) {
@@ -141,32 +135,39 @@ console.log('Presss',beauticianId);
           >
             <View style={{ marginTop: 10 }} className="flex-row justify-around p-2">
               <ServiceProviderButton
+                
                 buttonName="About"
                 onPressButtonClick={() => toggleContent('About')}
+                backgroundColor={selectedTab === 'About' ? colors.buttononhover: colors.topbackground}
+                fontcolor={selectedTab === 'About' ? colors.font1: colors.fontWhite}
               />
               <ServiceProviderButton
                 buttonName="Services"
                 onPressButtonClick={() => toggleContent('Services')}
+                backgroundColor={selectedTab === 'Services' ? colors.buttononhover: colors.topbackground}
+                fontcolor={selectedTab === 'Services' ? colors.font1: colors.fontWhite}
               />
 
               <ServiceProviderButton
                 buttonName="Review"
                 onPressButtonClick={() => toggleContent('Review')}
-               
+                backgroundColor={selectedTab === 'Review' ? colors.buttononhover: colors.topbackground}
+                fontcolor={selectedTab === 'Review' ? colors.font1: colors.fontWhite}
               />
               <ServiceProviderButton
                 buttonName="Gallery"
                 onPressButtonClick={() => toggleContent('Gallery')}
-               
+                backgroundColor={selectedTab === 'Gallery' ? colors.buttononhover: colors.topbackground}
+                fontcolor={selectedTab === 'Gallery' ? colors.font1: colors.fontWhite}
               />
             </View>
           </View>
 
           {/* Conditional Content */}
-          {showAbout && <ServiceProviderAbout />}
-          {showServices && <ServiceList />}
-          {showReview && <ServiceProviderReviews />}
-          {showGallery && <PhotosGallrey />}
+          {selectedTab==='About' && <ServiceProviderAbout />}
+          {selectedTab==='Services' && <ServiceList />}
+          {selectedTab =='Review'&& <ServiceProviderReviews />}
+          {selectedTab=='Gallery' && <PhotosGallrey />}
         </View>
       </ScrollView>
 
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     paddingBottom: Rh(16), // Space for the "Book Now" button
-    marginTop:Platform.OS=='android'? Rh(0):Rh(1)
+
   },
   backButton: {
     position: 'absolute',

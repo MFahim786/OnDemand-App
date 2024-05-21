@@ -29,7 +29,6 @@ export default function Profile() {
         Alert.alert('Error', 'Failed to fetch user data. Please try again.');
       }
     };
-
   
       fetchUserdata();
     
@@ -67,7 +66,7 @@ export default function Profile() {
   };
   const renderListItem = (item, index) => (
     <TouchableOpacity key={index} style={{ flexDirection: 'row', paddingVertical: Rh(1.8), paddingHorizontal: Rw(3.5), marginTop: Rh(1.2) }} onPress={item.onPress}>
-      <View style={{ borderRadius: 30, backgroundColor: colors.headerbackground, width: iconSize * 0.6, height: iconSize * 0.6, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ borderRadius: 30, backgroundColor: colors.profileiconesbackground, width: iconSize * 0.6, height: iconSize * 0.6, justifyContent: 'center', alignItems: 'center' }}>
         {item.icon}
       </View>
       <Text style={{ marginLeft: Rw(7), fontSize: fo(2), color: 'black', marginTop:Platform.OS=='android'?Rh(0): Rh(1),textAlign:'center' }}>{item.text}</Text>
@@ -95,7 +94,7 @@ export default function Profile() {
         <Text style={{ fontSize: fo(1.7), fontWeight: 'bold', color: 'white', marginLeft: Rw(1), marginTop: Rh(1) }}>{userData?.FirstName}ch</Text>
         <Text style={{ fontSize: fo(1.7), fontWeight: 'bold', color: 'white', marginLeft: Rw(3) }}> {userData?.Email}</Text>
       </View>
-      <View style={{marginTop:Rh(0)}}>
+      {/* <View style={{marginTop:Rh(0)}}>
       {[
         { icon: <Ionicons name="person-outline" size={iconSize * 0.4} color={colors.background} />, text: 'My Profile', icone2:<Icones icon_margine={Platform.OS=='android'?Rw(12.2):Rw(12)} icon_top={1}/>, onPress: updateProfile },
         { icon: <Image source={require('../assets/Icons/vector.png')} style={{ width: iconSize * 0.4, height: iconSize * 0.4 }} />, text: 'Favorite Beautician',icone2:<Icones icon_margine={Platform.OS=='android'?Rw(9 ): Rw(8.3)} icon_top={1}/>,onPress:favSaloon },
@@ -110,7 +109,85 @@ export default function Profile() {
           
         </View>
       ))}
-      </View>
+      </View> */}
+  <View style={{ marginTop: Rh(1.2) }}>
+  <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'space-between' }} onPress={updateProfile}>
+    <View style={{ left:Rw(6), borderRadius: 30, backgroundColor: colors.profileiconesbackground, width: iconSize * 0.6, height: iconSize * 0.6, justifyContent: 'center', alignItems: 'center' }}>
+      <Ionicons name="person-outline" size={iconSize * 0.4} color={colors.background} />
+    </View>
+    <Text style={{ fontSize: fo(2), color: 'black', marginTop: Platform.OS == 'android' ? Rh(0) : Rh(1), alignSelf: 'center',right:Rw(17) }}>My Profile</Text>
+    <View style={{ marginLeft: Rw(2), justifyContent: 'center', alignItems: 'center' }}>
+      <Icones icon_margine={Platform.OS == 'android' ? Rw(0) : Rw(0)} icon_top={0.6} />
+    </View>
+  </TouchableOpacity>
+</View>
+
+<View style={{ marginTop: Rh(4) }}>
+  <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'space-between' }} onPress={favSaloon}>
+    <View style={{ left:Rw(6), borderRadius: 30, backgroundColor: colors.profileiconesbackground, width: iconSize * 0.6, height: iconSize * 0.6, justifyContent: 'center', alignItems: 'center' }}>
+    <Image source={require('../assets/Icons/vector.png')} style={{ width: iconSize * 0.4, height: iconSize * 0.4 }} />
+    </View>
+    <Text style={{ fontSize: fo(2), color: 'black', marginTop: Platform.OS == 'android' ? Rh(0) : Rh(1),textAlign:'right', alignSelf: 'center',right:Rw(10) }}>Favorite Beautician</Text>
+    <View style={{ marginLeft: Rw(2), justifyContent: 'center', alignItems: 'center' }}>
+      <Icones icon_margine={Platform.OS == 'android' ? Rw(0) : Rw(0)} icon_top={0.6} />
+    </View>
+  </TouchableOpacity>
+</View>
+<View style={{ marginTop: Rh(4) }}>
+  <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'space-between' }} onPress={favSaloon}>
+    <View style={{ left:Rw(6), borderRadius: 30, backgroundColor: colors.profileiconesbackground, width: iconSize * 0.6, height: iconSize * 0.6, justifyContent: 'center', alignItems: 'center' }}>
+    <Image source={require('../assets/Icons/Paymentmethod.png')} style={{ width: iconSize, height: iconSize }} />
+    </View>
+    <Text style={{ fontSize: fo(2), color: 'black', marginTop: Platform.OS == 'android' ? Rh(0) : Rh(1),textAlign:'right', alignSelf: 'center',right:Rw(13) }}>Payment Method</Text>
+    <View style={{ marginLeft: Rw(2), justifyContent: 'center', alignItems: 'center' }}>
+      <Icones icon_margine={Platform.OS == 'android' ? Rw(0) : Rw(0)} icon_top={0.6} />
+    </View>
+  </TouchableOpacity>
+</View>
+<View style={{ marginTop: Rh(4) }}>
+  <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'space-between' }} onPress={updatePass}>
+    <View style={{ left:Rw(6), borderRadius: 30, backgroundColor: colors.profileiconesbackground, width: iconSize * 0.6, height: iconSize * 0.6, justifyContent: 'center', alignItems: 'center' }}>
+    <Image source={require('../assets/Icons/changepassword.png')} style={{ width: iconSize, height: iconSize }} />
+    </View>
+    <Text style={{ fontSize: fo(2), color: 'black', marginTop: Platform.OS == 'android' ? Rh(0) : Rh(1),textAlign:'right', alignSelf: 'center',right:Rw(12) }}>Change Password</Text>
+    <View style={{ marginLeft: Rw(2), justifyContent: 'center', alignItems: 'center' }}>
+      <Icones icon_margine={Platform.OS == 'android' ? Rw(0) : Rw(0)} icon_top={0.6} />
+    </View>
+  </TouchableOpacity>
+</View>
+<View style={{ marginTop: Rh(4) }}>
+  <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'space-between' }} onPress={updatePass}>
+    <View style={{ left:Rw(6), borderRadius: 30, backgroundColor: colors.profileiconesbackground, width: iconSize * 0.6, height: iconSize * 0.6, justifyContent: 'center', alignItems: 'center' }}>
+    <Image source={require('../assets/Icons/privacypolicy.png')} style={{ width: iconSize, height: iconSize }} />
+    </View>
+    <Text style={{ fontSize: fo(2), color: 'black', marginTop: Platform.OS == 'android' ? Rh(0) : Rh(1),textAlign:'right', alignSelf: 'center',right:Rw(15) }}>Privacy policy</Text>
+    <View style={{ marginLeft: Rw(2), justifyContent: 'center', alignItems: 'center' }}>
+      <Icones icon_margine={Platform.OS == 'android' ? Rw(0) : Rw(0)} icon_top={0.6} />
+    </View>
+  </TouchableOpacity>
+</View>
+<View style={{ marginTop: Rh(4) }}>
+  <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'space-between' }} onPress={aboutus}>
+    <View style={{ left:Rw(6), borderRadius: 30, backgroundColor: colors.profileiconesbackground, width: iconSize * 0.6, height: iconSize * 0.6, justifyContent: 'center', alignItems: 'center' }}>
+    <Image source={require('../assets/Icons/aboutus.png')} style={{ width: iconSize, height: iconSize }} />
+    </View>
+    <Text style={{ fontSize: fo(2), color: 'black', marginTop: Platform.OS == 'android' ? Rh(0) : Rh(1),textAlign:'right', alignSelf: 'center',right:Rw(18) }}>About Us</Text>
+    <View style={{ marginLeft: Rw(2), justifyContent: 'center', alignItems: 'center' }}>
+      <Icones icon_margine={Platform.OS == 'android' ? Rw(0) : Rw(0)} icon_top={0.6} />
+    </View>
+  </TouchableOpacity>
+</View>
+<View style={{ marginTop: Rh(4) }}>
+  <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'space-between' }} onPress={handlelogout}>
+    <View style={{ left:Rw(6), borderRadius: 30, backgroundColor: colors.profileiconesbackground, width: iconSize * 0.6, height: iconSize * 0.6, justifyContent: 'center', alignItems: 'center' }}>
+    <Image source={require('../assets/Icons/logout.png')} style={{ width: iconSize, height: iconSize }} />
+    </View>
+    <Text style={{ fontSize: fo(2), color: 'black', marginTop: Platform.OS == 'android' ? Rh(0) : Rh(1),textAlign:'right', alignSelf: 'center',right:Rw(19) }}>Logout</Text>
+    <View style={{ marginLeft: Rw(2), justifyContent: 'center', alignItems: 'center' }}>
+      <Icones icon_margine={Platform.OS == 'android' ? Rw(0) : Rw(0)} icon_top={0.6} />
+    </View>
+  </TouchableOpacity>
+</View>
     </ScreenWrapper>
   );
 }

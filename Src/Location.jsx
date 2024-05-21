@@ -48,7 +48,7 @@ export default function Location() {
         <Text style={{ color: colors.fontSubheadin, textAlign: 'center', fontSize: fo(1.7) }}>Turn on location services so we can show {'\n'} you what’s nearby</Text>
       </View>
       <View style={{ marginTop: Rh(10), flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Buttons titlenext={"Allow Location Access"} backgroundColor1={colors.headerbackground} fontcolor={colors.font1} pressnext={() => navigation.navigate('CurrentLocation')} />
+        <Buttons titlenext={"Allow Location Access"} backgroundColor1={colors.ServiceProvider_buttonBackground} fontcolor={colors.font1} pressnext={() => navigation.navigate('CurrentLocation')} />
         {/* <View style={{ marginTop: 10 }}>
           <Buttons titlenext={"Allow Location Access"} backgroundColor1={"#E0E0E0"} />
         </View> */}
@@ -84,12 +84,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
   },
-  backButton: {
-    position: 'absolute',
-    top: Rh(0.5),
-    left: Rw(0.2),
-    zIndex: 1,
-    marginTop:Rh(2),
-    marginLeft:Rw(4)
-  },
+
 });

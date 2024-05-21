@@ -32,6 +32,7 @@ import GmailAccountList from '../Src/Auth/GmailAuth';
 import FacebookSignIn from '../Src/Auth/FacebookAuth';
 import ForgetPasswordEmailOtp from '../Src/Auth/ForgetPasswordEmailOto';
 import AddReview from '../Src/AddReview/AddReview';
+import PhoneAuth from '../Src/Auth/PhoneAuth';
 const Stack = createNativeStackNavigator();
 export default function Appnavigation() {
   return (
@@ -68,6 +69,7 @@ export default function Appnavigation() {
         <Stack.Screen options={{headerShown:false}} name="GmailAccountList" component={GmailAccountList} />
         <Stack.Screen options={{headerShown:false}} name="FacebookSignIn" component={FacebookSignIn} />
         <Stack.Screen options={{headerShown:false}} name="AddReview" component={AddReview} />
+        <Stack.Screen options={{headerShown:false}} name="PhoneAuth" component={PhoneAuth} />
       </Stack.Navigator>
     </NavigationContainer>
   );

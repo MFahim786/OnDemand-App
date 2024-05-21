@@ -46,7 +46,6 @@ export default function Inprogress() {
                 <FlatList
                     data={bannerData?.bookings?.filter(item => item?.Status === "Pending")}
                     horizontal={false}
-                    pagingEnabled
                     keyExtractor={item => item._id}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => (
@@ -75,17 +74,12 @@ export default function Inprogress() {
                                 </View>
 
                                 <View style={styles.ratingContainer}>
-                                    <Text style={{ color: colors.fontSubheading, textAlign: 'center', fontSize: fo(2) }}>{item.Status}</Text>
-                                </View>
+                   
+                   <Text style={{ color: colors.fontWhite,textAlign:'center',fontSize:fo(1.3) }}>{item.Status}</Text>
+               </View>
                             </View>
 
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', margin: '1%' }}>
-                                <TouchableOpacity
-                                    onPress={() => navigation.navigate('AddTrip')}
-                                    style={{ padding: 8, backgroundColor: 'white', borderWidth: 1, borderColor: 'gray', borderRadius: 100, marginBottom: 2, marginRight: 1 }}>
-                                    <Text style={styles.buttontext}>View</Text>
-                                </TouchableOpacity>
-                            </View>
+                           
                         </View>
                         </TouchableOpacity>
                     )}
@@ -121,11 +115,11 @@ const styles = StyleSheet.create({
     },
     bannerContainer: {
         width: "97%",
-        height: Rw(30),
+        height: Rw(20),
         flexDirection: 'row',
         marginTop: Rh(2),
         alignItems: 'center',
-        justifyContent: 'space-between',
+        // justifyContent: 'space-between',
         alignItems: 'between',
         marginRight: Rw(10),
         marginLeft:Rw(2.4),
@@ -136,19 +130,19 @@ const styles = StyleSheet.create({
     },
     bannerImage: {
         width: Rw(35),
-        height: Rh(13.5),
+        height: Rh(10),
         marginLeft: Rw(-2),
         borderTopLeftRadius: Rw(5.2),
 
         borderBottomLeftRadius: Rw(5.2),
     },
-    SaloonItem: { flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' },
+    SaloonItem: { flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start',left:Rw(3) },
 
     saloonName: {
         marginLeft: Rw(2),
-        marginTop: Rh(1.2),
         color: `${colors.font1}`,
         fontSize: fo(1.9),
+        fontWeight:'400'
     },
     Phone: {
         color: `${colors.font1}`,
@@ -159,12 +153,13 @@ const styles = StyleSheet.create({
     PhoneContainer: {
 flexDirection: 'row',
 justifyContent: "flex-start",
+bottom:Rh(.2)
     },
     ratingContainer:{
-      backgroundColor:colors.headersubGround,
+      backgroundColor:colors.buttononhover,
       borderRadius:10,
-      width: Rw(23),
-      height: Rh(3),
-      marginBottom:Platform.OS=='android' ? Rh(2):0,
+      width: Rw(15),
+      height: Rh(2),
+      marginBottom:Platform.OS=='android' ? Rh(0):0,
     }
 });

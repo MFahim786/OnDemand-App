@@ -6,9 +6,10 @@ import {
   responsiveScreenWidth as Rw,
   responsiveScreenFontSize as Rf,
 } from 'react-native-responsive-dimensions';
-const BookingDetails = ({ title, pressnext, backgroundColor }) => {
+const BookingDetails = ({ title, pressnext, backgroundColor,shadowOpacity }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { shadowOpacity: shadowOpacity }]}>
+      
       <TouchableOpacity
         onPress={pressnext}
         style={[styles.button, { backgroundColor }]}>
@@ -19,21 +20,33 @@ const BookingDetails = ({ title, pressnext, backgroundColor }) => {
 };
 
 const styles = StyleSheet.create({
-  container:{
-flex: 1,
+  container: {
+    flex: 1,
+    
   },
+  
   button: {
    
     height: Rh(4),
     width: Rw(20),
     margin:Rw(2.3),
-    borderRadius:Rw(1),
+    borderRadius:Rw(3),
+    shadowColor:'rgba(255, 255, 255,0.9)', // Adjust the opacity as needed
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.6,
+    shadowRadius: 10,
+    elevation: 14, 
+    
   },
   buttonText: {
-    marginTop: Platform.OS === 'android' ? Rh(1.1) : Rh(1),
+    marginTop: Platform.OS === 'android' ? Rh(0.7) : Rh(1),
     textAlign: 'center',
     color: 'black',
     fontSize: Rf(1.5),
+    fontWeight:'700'
   },
 });
 export default BookingDetails;

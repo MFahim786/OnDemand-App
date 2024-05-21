@@ -47,7 +47,6 @@ export default function UpComming() {
                 <FlatList
                     data={bannerData?.bookings}
                     horizontal={false}
-                    pagingEnabled
                     keyExtractor={item => item._id}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => (

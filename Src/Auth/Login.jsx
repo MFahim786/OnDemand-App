@@ -47,7 +47,8 @@ const Login = ({ navigation }) => {
 
   const handleGoogleSignIn = () => {
     // Show the Google sign-in dialog
-    setShowGoogleSignInDialog(true);
+    setShowGoogleSignInDialog(false);
+    navigation.navigate('GmailAccountList');
   };
 
   const closeGoogleSignInDialog = () => {
@@ -100,6 +101,10 @@ const Login = ({ navigation }) => {
   const handleFacebook = () => {
     navigation.navigate('FacebookSignIn');
   }
+  const handlePhone = () => {
+    navigation.navigate('PhoneAuth');
+    
+  };
 if(loading){
   return(
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -171,7 +176,7 @@ if(loading){
           <View style={styles.line}></View>
         </View>
         
-        <View style={{ flexDirection: 'row', marginLeft: Rw(40), marginTop: Rw(1)}}>
+        <View style={{ flexDirection: 'row', marginLeft: Rw(37), marginTop: Rw(1)}}>
           <View>
             <TouchableOpacity onPress={handleFacebook}>
             <Image 
@@ -190,10 +195,21 @@ if(loading){
             {/* Google sign-in icon */}
             <TouchableOpacity onPress={handleGoogleSignIn}>
               <Image 
-                style={{width:35, height:35, top:"32%", left:"50%" }}
+                style={{width:35, height:35, top:"32%", left:"25%" }}
                 source={require("../../assets/googleIcon.png")}
               />
             </TouchableOpacity>
+            
+          </View>
+          <View>
+            {/* Google sign-in icon */}
+            <TouchableOpacity onPress={handlePhone}>
+              <Image 
+                style={{width:35, height:35, top:"32%", left:"40%" }}
+                source={require("../../assets/phone.png")}
+              />
+            </TouchableOpacity>
+            
           </View>
         </View>
 
@@ -206,7 +222,7 @@ if(loading){
       </View>
 
       {/* Google sign-in dialog */}
-      <Modal
+      {/* <Modal
         visible={showGoogleSignInDialog}
         transparent={true}
         animationType="slide"
@@ -218,7 +234,7 @@ if(loading){
             <Text style={{ color: 'white', marginTop: 20 }}>Close</Text>
           </TouchableOpacity>
         </View>
-      </Modal>
+      </Modal> */}
     </ScreenWrapper>
   );
 };
